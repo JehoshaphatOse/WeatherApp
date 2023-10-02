@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/dist/output.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Document</title>
+  </head>
+  <body class="bg-[#f8f7fc]">
+    <main class="m-4 mx-20">
+      <div>
+        <div class="flex items-center justify-between gap-[200px]">
+          <input
+            id="Search"
+            class="p-2 border-2 border-blue-200 rounded-full focus:outline-none flex-1"
+            type="text"
+            placeholder="Search a City"
+          />
+          <p onclick="cancleAction()" class="font-light cursor-pointer">
+            Cancle
+          </p>
+        </div>
+        <p id="errorMessage" class="text-xs">Invalid City Name</p>
+
+        <main class="Weather_container">
+          <div class="flex justify-center m-4">
+            <div>
+              <div>
+                <h1
+                  id="cityName4"
+                  class="text-4xl font-semibold text-center"
+                ></h1>
+                <p
+                  id="country"
+                  class="opacity-40 font-semibold text-center mt-2"
+                ></p>
+                <p
+                  id="time"
+                  class="opacity-40 font-semibold text-center mt-2"
+                ></p>
+                <p id="condition4" class="font-sm text-center"></p>
+              </div>
+              <div class="w-32 mt-4 flex items-center justify-center">
+                <img
+                  id="WeatherIcon4"
+                  class="rounded-full w-32"
+                  src=""
+                  alt=""
+                />
+              </div>
+
+              <h1 id="Temp4" class="text-3xl font-bold text-center mt-4"></h1>
+            </div>
+          </div>
+          <div class="bg-slate-100 mx-8 p-3 rounded-lg">
+            <h1 class="text-lg font-bold opacity-40">Extra Weather Details</h1>
+            <div class="flex items-center justify-between mt-2">
+              <div class="flex flex-col items-center">
+                <p class="opacity-40 font-bold mt-2">Precipitation</p>
+                <div class="w-14 mt-2">
+                  <img class="rounded-full" src="./images/rain.png" alt="" />
+                </div>
+                <h1 id="precipitation" class="text-base font-bold mt-2">
+                  31&#8451;
+                </h1>
+              </div>
+
+              <div class="flex flex-col items-center">
+                <p class="opacity-40 font-bold mt-2">Humidity</p>
+                <div class="w-14 mt-2">
+                  <img
+                    class="rounded-full"
+                    src="./images/humidity.png"
+                    alt=""
+                  />
+                </div>
+                <h1 id="humidity" class="text-base font-bold mt-2">
+                  31&#8451;
+                </h1>
+              </div>
+
+              <div class="flex flex-col items-center">
+                <p class="opacity-40 font-bold mt-2">Wind Speed</p>
+                <div class="w-14 mt-2">
+                  <img class="rounded-full" src="./images/wind.png" alt="" />
+                </div>
+                <h1 id="wind-speed" class="text-base font-bold mt-2">
+                  31&#8451;
+                </h1>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <div class="Popular_cities">
+          <p class="font-light text-2xl mt-8">Popular Cities</p>
+          <div
+            class="flex p-3 px-6 mt-2 bg-slate-200 rounded-full items-center justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <div class="w-16">
+                <img
+                  id="WeatherIcon"
+                  class="object-cover rounded-full"
+                  src="./images/sun.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <h2 id="cityName" class="text-2xl font-semibold hidden">
+                  Madrid
+                </h2>
+                <p id="Time" class="font-medium opacity-40">10:20pm</p>
+                <p id="condition" class="font-sm"></p>
+              </div>
+            </div>
+            <h1 id="Temp" class="text-2xl font-semibold">
+              29 <span id="degreeCelcius">&#8451;</span>
+            </h1>
+          </div>
+
+          <div
+            class="flex p-3 px-6 mt-8 bg-slate-200 rounded-full items-center justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <div class="w-16">
+                <img
+                  id="WeatherIcon2"
+                  class="object-cover rounded-full"
+                  src="./images/rain.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <h2 id="cityName2" class="text-2xl font-semibold">Barcelona</h2>
+                <p id="Time2" class="font-medium opacity-40">10:20pm</p>
+                <p id="condition2" class="font-sm"></p>
+              </div>
+            </div>
+            <h1 id="Temp2" class="text-2xl font-semibold">
+              29<span id="degreeCelcius2">&#8451;</span>
+            </h1>
+          </div>
+
+          <div
+            class="flex p-3 px-6 mt-8 bg-slate-200 rounded-full items-center justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <div class="w-16">
+                <img
+                  id="WeatherIcon3"
+                  class="object-cover rounded-full"
+                  src="./images/cloud.png"
+                  alt=""
+                />
+              </div>
+              <div>
+                <h2 id="cityName3" class="text-2xl font-semibold">Berlin</h2>
+                <p id="Time3" class="font-medium opacity-40">10:20pm</p>
+                <p id="condition3" class="font-sm"></p>
+              </div>
+            </div>
+            <h1 id="Temp3" class="text-2xl font-semibold">29&#8451;</h1>
+          </div>
+        </div>
+
+        <div id="Popular_cities2">
+          <p class="font-light text-xl mt-8">Popular Cities</p>
+          <div class="flex items-center justify-between flex-wrap">
+            <div class="p-3 px-6 mt-2">
+              <div class="flex items-center gap-3">
+                <div class="w-9">
+                  <img
+                    id="pop_city2_WeatherIcon"
+                    class="object-cover rounded-full"
+                    src="./images/sun.png"
+                    alt=""
+                  />
+                </div>
+                <div>
+                  <h2 id="cityName" class="text-lg font-semibold hidden">
+                    Madrid
+                  </h2>
+                  <p id="Time" class="font-medium opacity-40">10:20pm</p>
+                  <h1 id="Temp" class="text-lg font-semibold mt-2">
+                    29 <span id="degreeCelcius">&#8451;</span>
+                  </h1>
+                  <p id="condition" class="font-sm"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3 px-6 mt-2">
+              <div class="flex items-center gap-3">
+                <div class="w-9">
+                  <img
+                    id="WeatherIcon2"
+                    class="object-cover rounded-full"
+                    src="./images/rain.png"
+                    alt=""
+                  />
+                </div>
+                <div>
+                  <h2 id="cityName2" class="text-lg font-semibold">
+                    Barcelona
+                  </h2>
+                  <p id="Time2" class="font-medium opacity-40">10:20pm</p>
+                  <h1 id="Temp2" class="text-lg font-semibold mt-2">
+                    29<span id="degreeCelcius2">&#8451;</span>
+                  </h1>
+                  <p id="condition2" class="font-sm"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3 px-6 mt-2">
+              <div class="flex items-center gap-3">
+                <div class="w-9">
+                  <img
+                    id="WeatherIcon3"
+                    class="object-cover rounded-full"
+                    src="./images/cloud.png"
+                    alt=""
+                  />
+                </div>
+                <div>
+                  <h2 id="cityName3" class="text-lg font-semibold">Berlin</h2>
+                  <p id="Time3" class="font-medium opacity-40">10:20pm</p>
+                  <h1 id="Temp3" class="text-lg font-semibold mt-2">
+                    29&#8451;
+                  </h1>
+
+                  <p id="condition3" class="font-sm"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="loader"></div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
