@@ -7,6 +7,7 @@ let Time = document.querySelector("#Time");
 let Temp = document.querySelector("#Temp");
 let degreeCelcius = document.getElementById("degreeCelcius");
 let Search = document.getElementById("Search");
+let cityContainer = document.getElementById("city-container");
 
 // variable for second popular cities with small size
 const popularCities2 = document.querySelector("#Popular_cities2");
@@ -45,6 +46,15 @@ async function fetchWeather() {
   weatherIcon.src = data.current.condition.icon;
   document.getElementById("condition").innerHTML = data.current.condition.text;
   weatherIcon2.src = data.current.condition.icon;
+
+  cityContainer.addEventListener("click", function () {
+    console.log("clickd");
+    Weather_details.style.display = "block";
+    popularCities.classList.add("hide");
+
+    document.querySelector("#cityName4").innerHTML = data.location.name;
+  });
+  // cancleAction();
 }
 fetchWeather();
 
