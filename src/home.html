@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./input.css" />
+
     <link rel="stylesheet" href="../dist/output.css" />
     <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
@@ -11,17 +13,21 @@
     <main class="m-4 mx-20">
       <div>
         <div class="flex items-center justify-between gap-[200px]">
-          <input
-            id="Search"
-            class="p-2 border-2 border-blue-200 rounded-full focus:outline-none flex-1"
-            type="text"
-            placeholder="Search a City"
-          />
-          <p onclick="cancleAction()" class="font-light cursor-pointer">
-            Cancle
+          <button onclick="returnHome()">Home</button>
+          <div class="flex-1 flex flex-col">
+            <input
+              id="Search"
+              class="p-2 border-2 border-blue-200 rounded-full focus:outline-none flex-1"
+              type="text"
+              placeholder="Search a City"
+            />
+            <p id="errorMessage" class="text-xs">Invalid City Name</p>
+          </div>
+
+          <p onclick="cancelAction()" class="font-light cursor-pointer">
+            Cancel
           </p>
         </div>
-        <p id="errorMessage" class="text-xs">Invalid City Name</p>
 
         <main class="Weather_container">
           <div class="flex justify-center m-4">
@@ -33,15 +39,18 @@
                 ></h1>
                 <p
                   id="country"
-                  class="opacity-40 font-semibold text-center mt-2"
+                  class="text-yellow-500 font-semibold text-center mt-2"
                 ></p>
                 <p
                   id="time"
                   class="opacity-40 font-semibold text-center mt-2"
                 ></p>
-                <p id="condition4" class="font-sm text-center"></p>
+                <p
+                  id="condition4"
+                  class="font-sm text-center text-blue-400"
+                ></p>
               </div>
-              <div class="w-32 mt-4 flex items-center justify-center">
+              <div class="mt-4 flex items-center justify-center">
                 <img
                   id="WeatherIcon4"
                   class="rounded-full w-32"
@@ -50,7 +59,10 @@
                 />
               </div>
 
-              <h1 id="Temp4" class="text-3xl font-bold text-center mt-4"></h1>
+              <h1
+                id="Temp4"
+                class="text-3xl font-bold text-center mt-4 text-yellow-500"
+              ></h1>
             </div>
           </div>
           <div class="bg-slate-100 mx-8 p-3 rounded-lg">
@@ -96,8 +108,7 @@
         <div class="Popular_cities">
           <p class="font-light text-2xl mt-8">Popular Cities</p>
           <div
-            id="city-container"
-            class="flex p-3 px-6 mt-2 bg-slate-200 rounded-full items-center justify-between"
+            class="flex p-3 px-6 mt-2 bg-slate-200 rounded-full items-center justify-between cursor-pointer"
           >
             <div class="flex items-center gap-3">
               <div class="w-16">
@@ -109,16 +120,22 @@
                 />
               </div>
               <div>
-                <h2 id="cityName" class="text-2xl font-semibold hidden">
-                  Madrid
-                </h2>
-                <p id="Time" class="font-medium opacity-40">10:20pm</p>
-                <p id="condition" class="font-sm"></p>
+                <h2 class="text-2xl font-semibold cityName">Madrid</h2>
+                <p class="Time font-medium text-blue-300">10:20pm</p>
+                <p id="condition" class="font-sm text-yellow-500"></p>
               </div>
             </div>
-            <h1 id="Temp" class="text-2xl font-semibold">
-              29 <span id="degreeCelcius">&#8451;</span>
-            </h1>
+            <div class="flex flex-col items-center">
+              <h1 id="Temp" class="text-2xl font-bold text-yellow-500">
+                29 <span id="degreeCelcius">&#8451;</span>
+              </h1>
+              <button
+                id="city-container"
+                class="text-xs mt-1 text-blue-400 font-semibold"
+              >
+                View More
+              </button>
+            </div>
           </div>
 
           <div
@@ -135,13 +152,21 @@
               </div>
               <div>
                 <h2 id="cityName2" class="text-2xl font-semibold">Barcelona</h2>
-                <p id="Time2" class="font-medium opacity-40">10:20pm</p>
-                <p id="condition2" class="font-sm"></p>
+                <p id="Time2" class="font-medium text-blue-300">10:20pm</p>
+                <p id="condition2" class="font-sm text-yellow-500"></p>
               </div>
             </div>
-            <h1 id="Temp2" class="text-2xl font-semibold">
-              29<span id="degreeCelcius2">&#8451;</span>
-            </h1>
+            <div class="flex flex-col items-center">
+              <h1 id="Temp2" class="text-2xl font-bold text-yellow-500">
+                29 <span id="degreeCelcius">&#8451;</span>
+              </h1>
+              <button
+                id="city-container2"
+                class="text-xs text-blue-400 font-semibold mt-1"
+              >
+                View More
+              </button>
+            </div>
           </div>
 
           <div
@@ -158,11 +183,21 @@
               </div>
               <div>
                 <h2 id="cityName3" class="text-2xl font-semibold">Berlin</h2>
-                <p id="Time3" class="font-medium opacity-40">10:20pm</p>
-                <p id="condition3" class="font-sm"></p>
+                <p id="Time3" class="font-medium text-blue-300">10:20pm</p>
+                <p id="condition3" class="font-sm text-yellow-500"></p>
               </div>
             </div>
-            <h1 id="Temp3" class="text-2xl font-semibold">29&#8451;</h1>
+            <div class="flex flex-col items-center">
+              <h1 id="Temp3" class="text-2xl font-bold text-yellow-500">
+                29 <span id="degreeCelcius">&#8451;</span>
+              </h1>
+              <button
+                id="city-container3"
+                class="text-xs mt-1 text-blue-400 font-semibold"
+              >
+                View More
+              </button>
+            </div>
           </div>
         </div>
 
@@ -180,14 +215,16 @@
                   />
                 </div>
                 <div>
-                  <h2 id="cityName" class="text-lg font-semibold hidden">
+                  <h2 class="text-lg font-semibold pop_cities2-city-name">
                     Madrid
                   </h2>
-                  <p id="Time" class="font-medium opacity-40">10:20pm</p>
-                  <h1 id="Temp" class="text-lg font-semibold mt-2">
+                  <p id="popCity_time" class="font-medium opacity-40">
+                    10:20pm
+                  </p>
+                  <h1 id="pop_city_temp" class="text-lg font-semibold mt-2">
                     29 <span id="degreeCelcius">&#8451;</span>
                   </h1>
-                  <p id="condition" class="font-sm"></p>
+                  <p class="font-sm pop_cities2-city-condition"></p>
                 </div>
               </div>
             </div>
@@ -196,21 +233,25 @@
               <div class="flex items-center gap-3">
                 <div class="w-9">
                   <img
-                    id="WeatherIcon2"
-                    class="object-cover rounded-full"
+                    class="object-cover rounded-full pop_cities2-icon2"
                     src="./images/rain.png"
                     alt=""
                   />
                 </div>
                 <div>
-                  <h2 id="cityName2" class="text-lg font-semibold">
+                  <h2 class="text-lg font-semibold pop_cities2-city-name2">
                     Barcelona
                   </h2>
-                  <p id="Time2" class="font-medium opacity-40">10:20pm</p>
-                  <h1 id="Temp2" class="text-lg font-semibold mt-2">
+                  <p class="font-medium opacity-40 pop_cities2-city-time2">
+                    10:20pm
+                  </p>
+                  <h1
+                    id="Temp2"
+                    class="text-lg font-semibold mt-2 pop_cities2-city-temp2"
+                  >
                     29<span id="degreeCelcius2">&#8451;</span>
                   </h1>
-                  <p id="condition2" class="font-sm"></p>
+                  <p class="font-sm pop_cities2-city-condition2"></p>
                 </div>
               </div>
             </div>
@@ -219,20 +260,23 @@
               <div class="flex items-center gap-3">
                 <div class="w-9">
                   <img
-                    id="WeatherIcon3"
-                    class="object-cover rounded-full"
+                    class="object-cover rounded-full pop_cities2-city-icon3"
                     src="./images/cloud.png"
                     alt=""
                   />
                 </div>
                 <div>
-                  <h2 id="cityName3" class="text-lg font-semibold">Berlin</h2>
-                  <p id="Time3" class="font-medium opacity-40">10:20pm</p>
-                  <h1 id="Temp3" class="text-lg font-semibold mt-2">
+                  <h2 class="text-lg font-semibold popular_city_name_3">
+                    Berlin
+                  </h2>
+                  <p class="font-medium opacity-40 pop_cities2-city-time3">
+                    10:20pm
+                  </p>
+                  <h1 class="text-lg font-semibold mt-2 pop_cities2-city-temp3">
                     29&#8451;
                   </h1>
 
-                  <p id="condition3" class="font-sm"></p>
+                  <p class="font-sm pop_cities2-city-condition3"></p>
                 </div>
               </div>
             </div>
@@ -240,7 +284,7 @@
         </div>
       </div>
     </main>
-    <div class="loader"></div>
+    <div class="loader" id="loader"></div>
 
     <script src="./script.js"></script>
   </body>

@@ -1,20 +1,27 @@
 const Weather_details = document.querySelector(".Weather_container");
 const popularCities = document.querySelector(".Popular_cities");
-const loader = document.querySelector(".loader");
-let cityName = document.querySelector("#cityName");
+const loader = document.querySelector("#loader");
+let cityName = document.querySelector(".cityName");
 let weatherIcon = document.querySelector("#WeatherIcon");
-let Time = document.querySelector("#Time");
+let Time = document.querySelector(".Time");
 let Temp = document.querySelector("#Temp");
 let degreeCelcius = document.getElementById("degreeCelcius");
 let Search = document.getElementById("Search");
 let cityContainer = document.getElementById("city-container");
+let cityContainer2 = document.getElementById("city-container2");
+let cityContainer3 = document.getElementById("city-container3");
 
 // variable for second popular cities with small size
 const popularCities2 = document.querySelector("#Popular_cities2");
-let weatherIcon2 = document.querySelector("#pop_city2_WeatherIcon");
+let popWeatherIcon = document.querySelector("#pop_city2_WeatherIcon");
+let popCity_name = document.querySelector(".pop_cities2-city-name");
+let popCity_time = document.getElementById("popCity_time");
+let popCity_temp = document.querySelector("#pop_city_temp");
+let popCity_condition = document.querySelector(".pop_cities2-city-condition");
+console.log(popCity_time);
 
 window.addEventListener("load", () => {
-  loader.classList.add("loader-hidden");
+  hideLoader();
   popularCities2.classList.add("hide");
 
   Weather_details.classList.add("hide");
@@ -24,16 +31,21 @@ window.addEventListener("load", () => {
   // });
 });
 
-// function showLoader() {
-//   html.classList.add("loader");
-// }
+//show and hide loader function
 
-// function hideLoader() {
-//   loader.classList.add("loader-hidden");
-// }
+function showLoader() {
+  loader.classList.remove("loader-hidden");
+  loader.classList.add("loader");
+}
 
+function hideLoader() {
+  loader.classList.remove("loader");
+  loader.classList.add("loader-hidden");
+}
+
+// function to fetch popular cities data
 const apiUrl =
-  "http://api.weatherapi.com/v1/current.json?key=1243f23a41df434aa6a150725232809&q=Nigeria(Port-Harcourt)";
+  "https://api.weatherapi.com/v1/current.json?key=1243f23a41df434aa6a150725232809&q=Nigeria(Port-Harcourt)";
 
 async function fetchWeather() {
   let response = await fetch(apiUrl);
@@ -45,21 +57,42 @@ async function fetchWeather() {
   Temp.textContent = Math.round(data.current.temp_c) + degreeCelcius.innerHTML;
   weatherIcon.src = data.current.condition.icon;
   document.getElementById("condition").innerHTML = data.current.condition.text;
-  weatherIcon2.src = data.current.condition.icon;
+
+  // popular cities 2 parameters
+  popWeatherIcon.src = data.current.condition.icon;
+  popCity_name.innerHTML = data.location.name;
+  popCity_time.innerHTML = data.location.localtime;
+  popCity_temp.innerHTML =
+    Math.round(data.current.temp_c) + degreeCelcius.innerHTML;
+  popCity_condition.innerHTML = data.current.condition.text;
 
   cityContainer.addEventListener("click", function () {
     console.log("clickd");
     Weather_details.style.display = "block";
-    popularCities.classList.add("hide");
+    popularCities.style.display = "none";
 
     document.querySelector("#cityName4").innerHTML = data.location.name;
+    document.querySelector("#time").innerHTML = data.location.localtime;
+    document.querySelector("#Temp4").textContent =
+      Math.round(data.current.temp_c) + degreeCelcius.innerHTML;
+    document.getElementById("WeatherIcon4").src = data.current.condition.icon;
+    document.getElementById("condition3").innerHTML =
+      data.current.condition.text;
+    document.getElementById("country").innerHTML = data.location.country;
+    document.getElementById("condition4").innerHTML =
+      data.current.condition.text;
+    document.getElementById("precipitation").innerHTML =
+      data.current.precip_mm + "mm";
+    document.getElementById("humidity").innerHTML = data.current.humidity + "%";
+    document.getElementById("wind-speed").innerHTML =
+      data.current.wind_kph + "km/h";
   });
   // cancleAction();
 }
 fetchWeather();
 
 const apiUrl2 =
-  "http://api.weatherapi.com/v1/current.json?key=1243f23a41df434aa6a150725232809&q=London&aqi=no";
+  "https://api.weatherapi.com/v1/current.json?key=1243f23a41df434aa6a150725232809&q=London&aqi=no";
 
 async function fetchWeather2() {
   let response = await fetch(apiUrl2);
@@ -72,11 +105,45 @@ async function fetchWeather2() {
     Math.round(data.current.temp_c) + degreeCelcius.innerHTML;
   document.getElementById("WeatherIcon2").src = data.current.condition.icon;
   document.getElementById("condition2").innerHTML = data.current.condition.text;
+
+  // popular cities 2 parameter
+  document.querySelector(".pop_cities2-icon2").src =
+    data.current.condition.icon;
+  document.querySelector(".pop_cities2-city-name2").innerHTML =
+    data.location.name;
+  document.querySelector(".pop_cities2-city-time2").innerHTML =
+    data.location.localtime;
+  document.querySelector(".pop_cities2-city-temp2").innerHTML =
+    Math.round(data.current.temp_c) + degreeCelcius.innerHTML;
+  document.querySelector(".pop_cities2-city-condition2").innerHTML =
+    data.current.condition.text;
+
+  cityContainer2.addEventListener("click", function () {
+    console.log("clickd");
+    Weather_details.style.display = "block";
+    popularCities.style.display = "none";
+
+    document.querySelector("#cityName4").innerHTML = data.location.name;
+    document.querySelector("#time").innerHTML = data.location.localtime;
+    document.querySelector("#Temp4").textContent =
+      Math.round(data.current.temp_c) + degreeCelcius.innerHTML;
+    document.getElementById("WeatherIcon4").src = data.current.condition.icon;
+    document.getElementById("condition3").innerHTML =
+      data.current.condition.text;
+    document.getElementById("country").innerHTML = data.location.country;
+    document.getElementById("condition4").innerHTML =
+      data.current.condition.text;
+    document.getElementById("precipitation").innerHTML =
+      data.current.precip_mm + "mm";
+    document.getElementById("humidity").innerHTML = data.current.humidity + "%";
+    document.getElementById("wind-speed").innerHTML =
+      data.current.wind_kph + "km/h";
+  });
 }
 fetchWeather2();
 
 const apiUrl3 =
-  "http://api.weatherapi.com/v1/current.json?key=1243f23a41df434aa6a150725232809&q=America(New York)&aqi=no";
+  "https://api.weatherapi.com/v1/current.json?key=1243f23a41df434aa6a150725232809&q=America(New York)&aqi=no";
 
 async function fetchWeather3() {
   let response = await fetch(apiUrl3);
@@ -89,19 +156,50 @@ async function fetchWeather3() {
     Math.round(data.current.temp_c) + degreeCelcius.innerHTML;
   document.getElementById("WeatherIcon3").src = data.current.condition.icon;
   document.getElementById("condition3").innerHTML = data.current.condition.text;
+
+  // popular cities 2 parameter
+
+  cityContainer3.addEventListener("click", function () {
+    console.log("clickd");
+    Weather_details.style.display = "block";
+    popularCities.style.display = "none";
+
+    document.querySelector("#cityName4").innerHTML = data.location.name;
+    document.querySelector("#time").innerHTML = data.location.localtime;
+    document.querySelector("#Temp4").textContent =
+      Math.round(data.current.temp_c) + degreeCelcius.innerHTML;
+    document.getElementById("WeatherIcon4").src = data.current.condition.icon;
+    document.getElementById("condition3").innerHTML =
+      data.current.condition.text;
+    document.getElementById("country").innerHTML = data.location.country;
+    document.getElementById("condition4").innerHTML =
+      data.current.condition.text;
+    document.getElementById("precipitation").innerHTML =
+      data.current.precip_mm + "mm";
+    document.getElementById("humidity").innerHTML = data.current.humidity + "%";
+    document.getElementById("wind-speed").innerHTML =
+      data.current.wind_kph + "km/h";
+  });
 }
 fetchWeather3();
 
+// function to fetch searched cities
 const apiUrl4 =
-  "http://api.weatherapi.com/v1/current.json?key=1243f23a41df434aa6a150725232809&q=";
+  "https://api.weatherapi.com/v1/current.json?key=1243f23a41df434aa6a150725232809&q=";
 
 async function fetchWeatherAll(city) {
+  showLoader();
+
   let response = await fetch(apiUrl4 + city);
+  hideLoader();
 
   if (response.status == 400) {
     document.querySelector("#errorMessage").style.display = "block";
-
+    Search.style.borderColor = "red";
+    Search.style.borderWidth = "1px";
     Weather_details.style.display = "none";
+    popularCities.style.display = "block";
+    popularCities2.style.display = "none";
   } else {
     let data = await response.json();
     console.log(data);
@@ -124,10 +222,16 @@ async function fetchWeatherAll(city) {
 
     Weather_details.style.display = "block";
     document.querySelector("#errorMessage").style.display = "none";
+    popularCities2.style.display = "block";
+    popularCities.style.display = "none";
   }
 }
 
 Search.addEventListener("keypress", function (event) {
+  document.querySelector("#errorMessage").style.display = "none";
+  Search.style.borderColor = "";
+  Search.style.borderWidth = "";
+
   if (event.key === "Enter") {
     fetchWeatherAll(Search.value);
 
@@ -138,10 +242,19 @@ Search.addEventListener("keypress", function (event) {
   }
 });
 
-function cancleAction() {
+// Function to return home
+
+function cancelAction() {
+  Search.value = "";
+}
+function returnHome() {
+  Weather_details.style.display = "none";
+  popularCities2.style.display = "none";
+  popularCities.style.display = "block";
+
   if (Weather_details.classList.contains("show")) {
     Weather_details.style.display = "none";
-    popularCities.classList.add("show");
+    popularCities.style.display = "block";
     popularCities2.style.display = "none";
   } else {
     return;

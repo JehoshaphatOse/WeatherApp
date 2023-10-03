@@ -9,7 +9,7 @@
   align-items: center;
   background-color: #f7f9fb;
   transition: opacity 0.75s, visibility 0.75s;
-  transition-delay: 1.5s;
+  /* transition-delay: .5s; */
 }
 .loader-hidden {
   opacity: 0;
