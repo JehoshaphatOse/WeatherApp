@@ -43,6 +43,87 @@ function hideLoader() {
   loader.classList.add("loader-hidden");
 }
 
+// function to view weather based on location
+
+let view_current_weather = document.getElementById("view_weather");
+let latitude;
+let longitude;
+const apiUrl1 = "https://api.weatherapi.com/v1/current.json?";
+
+const apikey = "1243f23a41df434aa6a150725232809";
+view_current_weather.addEventListener("click", () => {
+  navigator.geolocation.getCurrentPosition(
+    (data) => {
+      latitude = data.coords.latitude;
+      longitude = data.coords.longitude;
+      console.log(longitude);
+      console.log(latitude);
+      async function fetchWeather() {
+        showLoader();
+        if (latitude !== undefined && longitude !== undefined) {
+          let response = await fetch(
+            `${apiUrl1}q=${latitude},${longitude}&key=${apikey}`
+          );
+          hideLoader();
+          let data = await response.json();
+          console.log(data);
+          view_current_weather.addEventListener("click", () => {
+            Weather_details.style.display = "block";
+            popularCities.style.display = "none";
+
+            document.querySelector("#cityName4").innerHTML = data.location.name;
+            document.querySelector("#time").innerHTML = data.location.localtime;
+            document.querySelector("#Temp4").textContent =
+              Math.round(data.current.temp_c) + degreeCelcius.innerHTML;
+            document.getElementById("WeatherIcon4").src =
+              data.current.condition.icon;
+            document.getElementById("condition3").innerHTML =
+              data.current.condition.text;
+            document.getElementById("country").innerHTML =
+              data.location.country;
+            document.getElementById("condition4").innerHTML =
+              data.current.condition.text;
+            document.getElementById("precipitation").innerHTML =
+              data.current.precip_mm + "mm";
+            document.getElementById("humidity").innerHTML =
+              data.current.humidity + "%";
+            document.getElementById("wind-speed").innerHTML =
+              data.current.wind_kph + "km/h";
+          });
+        } else {
+          console.log("Latitude and longitude are undefined.");
+        }
+      }
+      fetchWeather();
+    },
+    (error) => console.log(error)
+  );
+});
+
+// function to change from degree celcius to fahrenheit
+
+unitChange = document.getElementById("Temp4");
+fahrenheit_Temp = document.getElementById("fahrenheit_temp");
+let isFahenheit = true;
+
+function changeUnit() {
+  const currentTemp = parseFloat(unitChange.textContent);
+  let convertedTemp;
+
+  if (isFahenheit) {
+    convertedTemp = currentTemp * (9 / 5) + 32;
+    fahrenheit_Temp.textContent = Math.round(convertedTemp) + "\xB0F";
+  } else {
+    convertedTemp = (currentTemp - 32) * (5 / 9);
+    unitChange.textContent =
+      Math.round(convertedTemp) + degreeCelcius.innerHTML;
+  }
+
+  isFahenheit = isFahenheit;
+
+  // isFahenheit = !isFahenheit;
+}
+
 // function to fetch popular cities data
 const apiUrl =
   "https://api.weatherapi.com/v1/current.json?key=1243f23a41df434aa6a150725232809&q=Nigeria(Port-Harcourt)";
@@ -208,6 +289,7 @@ async function fetchWeatherAll(city) {
     document.querySelector("#time").innerHTML = data.location.localtime;
     document.querySelector("#Temp4").textContent =
       Math.round(data.current.temp_c) + degreeCelcius.innerHTML;
+
     document.getElementById("WeatherIcon4").src = data.current.condition.icon;
     document.getElementById("condition3").innerHTML =
       data.current.condition.text;
